@@ -1,0 +1,76 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta charset="UTF-8">
+    <meta name="description" content="Work tutorials">
+
+    <title>Demonstration</title>
+
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script>
+    <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="work.css">
+    <link rel="stylesheet" href="work.scss">
+</head>
+
+<body style="font-family: SimSun ,Microsoft JhengHei,Meiryo,sans-serif;">
+    <div id="vue_app" v-cloak>
+        <div :class="'g'+selectedTheme">
+            <div>
+                <p class="btn btn-primary mx-2" v-for="(btn, btnIdx) in pages" v-text="btn" @click="selectedPage = btnIdx"></p>
+            </div>
+            <div>
+                <div v-if="selectedPage == 0">
+                    <inputexample :form="formValue"></inputexample>
+                    <h3><b>resault</b></h3>
+                    <h4>
+                        <p>My name is: ((formValue.name)).</p>
+                        <p>I have ((formValue.lunch)) for lunch.</p>
+                        <p>I want some ((formValue.fruit)).</p>
+                    </h4>
+                </div>
+
+                <div v-else-if="selectedPage == 1">
+                    <p class="me-4">Click to add value</p>
+                    <p class="btn btn-info" @click="computedNum++">((computedTxt + computedNum))</p>
+                </div>
+
+                <div v-else-if="selectedPage == 2">
+                    <p class="btn mx-2" :class="selectedTheme==th?'btn-secondary':'btn-success'" v-for="th in theme" v-text="th" @click="selectedTheme=th"></p>
+                    <span>You now select: ((selectedTheme))</span>
+                </div>
+
+                <div v-else>
+                    <p class="btn btn-info" @click="getMemberList()">Click to get Member list</p>
+                    <div>
+                        <p v-if="memberList.length == 0"></p>
+                    </div>
+                    <div v-else>
+                        <table class="table">
+                            <tr>
+                                <th>name</th>
+                                <th>city</th>
+                            </tr>
+                            <tr v-for="mb in memberList">
+                                <td v-for="info in mb">((info))</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue main-->
+    <script src="work.js"></script>
+    <!-- for Vue conponent extend -->
+    <script src="vueConponent.js"></script>
+    <script>
+        baseapp.mount("#vue_app");
+    </script>
+</body>
+
+</html>

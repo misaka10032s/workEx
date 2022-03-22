@@ -1,0 +1,19 @@
+.btn{
+    cursor: pointer;
+}
+
+#vue_app > div{
+    padding: 10% 20%;
+    min-height: 100%;
+    transition: .3s;
+}
+
+.glight{
+    background-color: aliceblue;
+    color: black;
+}
+
+.gdark{
+    background-color: darkgray;
+    color: whitesmoke;
+}
